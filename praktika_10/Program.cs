@@ -80,10 +80,7 @@ namespace praktika_10
                     }
                     while (temp2 != null)
                     {
-                        if (pol_1.Degree == temp2.Degree)
-                        {
-                            slag += temp2.A;
-                        }
+                        if (pol_1.Degree == temp2.Degree) slag += temp2.A;
                         temp2 = temp2.Next;
                     }
                     if (slag != 0)
@@ -97,17 +94,22 @@ namespace praktika_10
                 }
                 list = beg.Next;
                 temp1 = beg.Next;
-                while (list!=null) //проверка на одинаковые слагаемые
+                int count = 0;
+                while (list != null) //проверка на одинаковые слагаемые
                 {
-                    while (temp1!= null)
+                    while (temp1 != null)
                     {
                         if (list.A == temp1.A && list.Degree == temp1.Degree)
                         {
-                            list.Next = list.Next.Next;
+                            count++;
+                            if (count > 1)
+                                list.Next = list.Next.Next;
                         }
                         temp1 = temp1.Next;
                     }
                     list = list.Next;
+                    temp1 = beg.Next;
+                    count = 0;
                 }
                 return beg.Next;
             }
